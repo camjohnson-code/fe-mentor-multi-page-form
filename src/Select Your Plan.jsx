@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import PlanCard from './Plan Card';
 import ToggleSwitch from './Toggle Switch';
 
-const SelectPlan = ({ decreaseStep, increaseStep, isMonthly, setIsMonthly }) => {
-  const [selectedPlan, setSelectedPlan] = useState(null);
-
+const SelectPlan = ({
+  selectedPlan,
+  setSelectedPlan,
+  decreaseStep,
+  increaseStep,
+  isMonthly,
+  setIsMonthly,
+}) => {
   return (
     <section className='font-ubuntu w-full h-100 pt-20 px-30 flex flex-col items-start'>
       <h1 className='text-h1 font-extrabold'>Select your plan</h1>
@@ -27,8 +32,16 @@ const SelectPlan = ({ decreaseStep, increaseStep, isMonthly, setIsMonthly }) => 
         <ToggleSwitch isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
       </div>
       <div className='w-full flex justify-between items-center mt-40'>
-        <button onClick={decreaseStep} className='text-cool-gray hover:font-bold'>Go Back</button>
-        <button onClick={increaseStep} className='bg-marine-blue text-alabaster border-none rounded-lg px-5 py-3 w-auto'>
+        <button
+          onClick={decreaseStep}
+          className='text-cool-gray hover:font-bold'
+        >
+          Go Back
+        </button>
+        <button
+          onClick={increaseStep}
+          className='bg-marine-blue text-alabaster border-none rounded-lg px-5 py-3 w-auto'
+        >
           Next Step
         </button>
       </div>
