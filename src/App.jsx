@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PersonalInfo from './Personal Info';
 import SelectPlan from './Select Your Plan';
+import AddOns from './Add Ons';
 
 function App() {
   const [name, setName] = useState('');
@@ -11,6 +12,8 @@ function App() {
   const [phoneError, setPhoneError] = useState(false);
   const [step, setStep] = useState(1);
   const [isMonthly, setIsMonthly] = useState(true);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [selectedAddOn, setSelectedAddOn] = useState([]);
 
   const increaseStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -103,7 +106,12 @@ function App() {
         ''
       )}
       {step === 2 ? (
-        <SelectPlan isMonthly={isMonthly} setIsMonthly={setIsMonthly} decreaseStep={decreaseStep} increaseStep={increaseStep} />
+        <SelectPlan selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} isMonthly={isMonthly} setIsMonthly={setIsMonthly} decreaseStep={decreaseStep} increaseStep={increaseStep} />
+      ) : (
+        ''
+      )}
+      {step === 3 ? (
+        <AddOns selectedAddOn={selectedAddOn} setSelectedAddOn={setSelectedAddOn} isMonthly={isMonthly} decreaseStep={decreaseStep} increaseStep={increaseStep} />
       ) : (
         ''
       )}
