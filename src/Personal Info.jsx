@@ -93,7 +93,7 @@ const PersonalInfo = ({
         </div>
         <div className='flex justify-end'>
           <button
-            className='mt-20 bg-purplish-blue text-alabaster border-none rounded-lg px-5 py-3 w-auto'
+            className='mt-20 bg-marine-blue text-alabaster border-none rounded-lg px-5 py-3 w-auto'
             type='submit'
             onClick={(event) => {
               event.preventDefault();
