@@ -87,7 +87,8 @@ function App() {
           </div>
         </div>
       </aside>
-      {step === 1 ? (
+      <section className='h-100 w-full px-20 py-10'>
+        {step === 1 ? (
         <PersonalInfo
           name={name}
           setName={setName}
@@ -121,6 +122,7 @@ function App() {
       ) : (
         ''
       )}
+      </section>
     </main>
   );
 }
