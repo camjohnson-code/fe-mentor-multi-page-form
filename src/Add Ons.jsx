@@ -8,7 +8,7 @@ const AddOns = ({
   selectedAddOn,
   setSelectedAddOn,
 }) => {
-  const description = {
+  const descriptions = {
     0: {
       name: 'Online service',
       description: 'Access to multiplayer games',
@@ -31,11 +31,11 @@ const AddOns = ({
 
   const handleClick = (index) => {
     const hasIndex = selectedAddOn.some(
-      (addOn) => addOn.name === description[index].name
+      (addOn) => addOn.name === descriptions[index].name
     );
 
-    if (hasIndex) setSelectedAddOn(selectedAddOn.filter((addOn) => addOn.name !== description[index].name));
-    else setSelectedAddOn([...selectedAddOn, description[index]]);
+    if (hasIndex) setSelectedAddOn(selectedAddOn.filter((addOn) => addOn.name !== descriptions[index].name));
+    else setSelectedAddOn([...selectedAddOn, descriptions[index]]);
   };
 
   return (
@@ -49,14 +49,14 @@ const AddOns = ({
           <AddOnCard
             key={index}
             isMonthly={isMonthly}
-            isChecked={selectedAddOn.some(addOn => addOn.name === description[index].name)}
+            isChecked={selectedAddOn.some(addOn => addOn.name === descriptions[index].name)}
             onClick={() => handleClick(index)}
-            addOn={description[index].name}
-            description={description[index].description}
+            addOn={descriptions[index].name}
+            description={descriptions[index].description}
             price={
               isMonthly
-                ? description[index].monthlyPrice
-                : description[index].yearlyPrice
+                ? descriptions[index].monthlyPrice
+                : descriptions[index].yearlyPrice
             }
           />
         ))}
