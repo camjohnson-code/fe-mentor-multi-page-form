@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PlanCard from './Plan Card';
 import ToggleSwitch from './Toggle Switch';
 
@@ -10,6 +10,28 @@ const SelectPlan = ({
   isMonthly,
   setIsMonthly,
 }) => {
+  const plans = {
+    0: {
+      name: 'Arcade',
+      monthlyPrice: 9,
+      yearlyPrice: 90,
+    },
+    1: {
+      name: 'Advanced',
+      monthlyPrice: 12,
+      yearlyPrice: 120,
+    },
+    2: {
+      name: 'Pro',
+      monthlyPrice: 15,
+      yearlyPrice: 150,
+    },
+  };
+
+  const handleClick = (index) => {
+    setSelectedPlan(plans[index])
+  }
+
   return (
     <section className='font-ubuntu w-full h-100 pt-20 px-30 flex flex-col items-start'>
       <h1 className='text-h1 font-extrabold'>Select your plan</h1>
@@ -20,10 +42,11 @@ const SelectPlan = ({
         {[...Array(3).keys()].map((index) => (
           <PlanCard
             key={index}
-            isSelected={selectedPlan === index}
-            onClick={() => setSelectedPlan(index)}
-            plan={index === 0 ? 'Arcade' : index === 1 ? 'Advanced' : 'Pro'}
-            price={index === 0 ? '9' : index === 1 ? '12' : '15'}
+            isSelected={selectedPlan?.name === plans[index].name}
+            onClick={() => handleClick(index)}
+            plan={plans[index].name}
+            monthlyPrice={plans[index].monthlyPrice}
+            yearlyPrice={plans[index].yearlyPrice}
             isMonthly={isMonthly}
           />
         ))}
