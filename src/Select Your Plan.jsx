@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlanCard from './Plan Card';
 import ToggleSwitch from './Toggle Switch';
 
 const SelectPlan = ({
+  planError, 
+  setPlanError,
   selectedPlan,
   setSelectedPlan,
   decreaseStep,
@@ -28,8 +30,16 @@ const SelectPlan = ({
     },
   };
 
-  const handleClick = (index) => {
+  const choosePlan = (index) => {
+    setPlanError(false);
     setSelectedPlan(plans[index]);
+  };
+
+  const handleButtonClick = () => {
+    if (selectedPlan) {
+      setPlanError(false);
+      increaseStep();
+    } else setPlanError(true);
   };
 
   return (
@@ -44,7 +54,7 @@ const SelectPlan = ({
             <PlanCard
               key={index}
               isSelected={selectedPlan?.name === plans[index].name}
-              onClick={() => handleClick(index)}
+              onClick={() => choosePlan(index)}
               plan={plans[index].name}
               monthlyPrice={plans[index].monthlyPrice}
               yearlyPrice={plans[index].yearlyPrice}
@@ -52,6 +62,13 @@ const SelectPlan = ({
             />
           ))}
         </div>
+        {planError ? (
+          <p className='text-strawberry-red font-semibold text-sm text-center mb-5'>
+            Please select a plan before advancing.
+          </p>
+        ) : (
+          ''
+        )}
         <div className='w-full flex justify-center items-center'>
           <ToggleSwitch isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
         </div>
@@ -64,7 +81,7 @@ const SelectPlan = ({
           Go Back
         </button>
         <button
-          onClick={increaseStep}
+          onClick={handleButtonClick}
           className='bg-marine-blue text-alabaster border-none rounded-lg px-5 py-3 w-auto'
         >
           Next Step

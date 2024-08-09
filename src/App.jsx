@@ -14,6 +14,7 @@ function App() {
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState(false);
   const [step, setStep] = useState(1);
+  const [planError, setPlanError] = useState(false);
   const [isMonthly, setIsMonthly] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedAddOn, setSelectedAddOn] = useState([]);
@@ -57,6 +58,8 @@ function App() {
     ),
     2: () => (
       <SelectPlan
+        planError={planError}
+        setPlanError={setPlanError}
         selectedPlan={selectedPlan}
         setSelectedPlan={setSelectedPlan}
         isMonthly={isMonthly}
