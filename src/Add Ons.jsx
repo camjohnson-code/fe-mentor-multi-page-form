@@ -34,34 +34,41 @@ const AddOns = ({
       (addOn) => addOn.name === descriptions[index].name
     );
 
-    if (hasIndex) setSelectedAddOn(selectedAddOn.filter((addOn) => addOn.name !== descriptions[index].name));
+    if (hasIndex)
+      setSelectedAddOn(
+        selectedAddOn.filter((addOn) => addOn.name !== descriptions[index].name)
+      );
     else setSelectedAddOn([...selectedAddOn, descriptions[index]]);
   };
 
   return (
-    <section className='font-ubuntu w-3/5 h-100 pt-20 px-30 flex flex-col items-start'>
-      <h1 className='text-h1 font-extrabold'>Pick add-ons</h1>
-      <p className='font-thin text-cool-gray'>
-        Add-ons help enhance your gaming experience.
-      </p>
-      <div className='my-10 flex flex-col w-full justify-between h-1/2'>
-        {[...Array(3).keys()].map((index) => (
-          <AddOnCard
-            key={index}
-            isMonthly={isMonthly}
-            isChecked={selectedAddOn.some(addOn => addOn.name === descriptions[index].name)}
-            onClick={() => handleClick(index)}
-            addOn={descriptions[index].name}
-            description={descriptions[index].description}
-            price={
-              isMonthly
-                ? descriptions[index].monthlyPrice
-                : descriptions[index].yearlyPrice
-            }
-          />
-        ))}
+    <section className='font-ubuntu w-full h-full flex flex-col justify-between items-start'>
+      <div className='w-full'>
+        <h1 className='text-h1 font-extrabold'>Pick add-ons</h1>
+        <p className='font-thin text-cool-gray'>
+          Add-ons help enhance your gaming experience.
+        </p>
+        <div className='my-10 flex flex-col w-full justify-between h-1/2 gap-5'>
+          {[...Array(3).keys()].map((index) => (
+            <AddOnCard
+              key={index}
+              isMonthly={isMonthly}
+              isChecked={selectedAddOn.some(
+                (addOn) => addOn.name === descriptions[index].name
+              )}
+              onClick={() => handleClick(index)}
+              addOn={descriptions[index].name}
+              description={descriptions[index].description}
+              price={
+                isMonthly
+                  ? descriptions[index].monthlyPrice
+                  : descriptions[index].yearlyPrice
+              }
+            />
+          ))}
+        </div>
       </div>
-      <div className='w-full flex justify-between items-center mt-40'>
+      <div className='w-full flex justify-between items-center'>
         <button
           onClick={decreaseStep}
           className='text-cool-gray hover:font-bold'
