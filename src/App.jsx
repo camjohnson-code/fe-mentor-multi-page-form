@@ -4,6 +4,7 @@ import SelectPlan from './Select Your Plan';
 import AddOns from './Add Ons';
 import FinishingUp from './Finishing Up';
 import StepBadge from './Step Badge';
+import Confirmation from './Confirmation';
 
 function App() {
   const [name, setName] = useState('');
@@ -75,6 +76,16 @@ function App() {
     ),
     4: () => (
       <FinishingUp
+        setStep={setStep}
+        selectedPlan={selectedPlan}
+        selectedAddOn={selectedAddOn}
+        isMonthly={isMonthly}
+        decreaseStep={decreaseStep}
+        increaseStep={increaseStep}
+      />
+    ),
+    5: () => (
+      <Confirmation
         setStep={setStep}
         selectedPlan={selectedPlan}
         selectedAddOn={selectedAddOn}
