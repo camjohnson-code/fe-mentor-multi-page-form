@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PersonalInfo from './Personal Info';
 import SelectPlan from './Select Your Plan';
 import AddOns from './Add Ons';
+import FinishingUp from './Finishing Up';
 
 function App() {
   const [name, setName] = useState('');
@@ -112,6 +113,11 @@ function App() {
       )}
       {step === 3 ? (
         <AddOns selectedAddOn={selectedAddOn} setSelectedAddOn={setSelectedAddOn} isMonthly={isMonthly} decreaseStep={decreaseStep} increaseStep={increaseStep} />
+      ) : (
+        ''
+      )}
+      {step === 4 ? (
+        <FinishingUp setStep={setStep} selectedPlan={selectedPlan} selectedAddOn={selectedAddOn} isMonthly={isMonthly} decreaseStep={decreaseStep} increaseStep={increaseStep} />
       ) : (
         ''
       )}
