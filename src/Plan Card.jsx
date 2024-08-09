@@ -1,4 +1,4 @@
-const PlanCard = ({ isSelected, onClick, plan, price, isMonthly }) => {
+const PlanCard = ({ isSelected, onClick, plan, monthlyPrice, yearlyPrice, isMonthly }) => {
   return (
     <div className='flex justify-end'>
       <div
@@ -14,7 +14,7 @@ const PlanCard = ({ isSelected, onClick, plan, price, isMonthly }) => {
         />
         <div className='flex flex-col gap-2'>
           <p className='font-bold text-marine-blue' style={{ fontSize: '1rem' }}>{plan}</p>
-          <p className='font-light text-sm text-cool-gray'>{`$${isMonthly ? price : price * 10}/${isMonthly ? 'mo' : 'yr'}`}</p>
+          <p className='font-light text-sm text-cool-gray'>{`$${isMonthly ? monthlyPrice : yearlyPrice}/${isMonthly ? 'mo' : 'yr'}`}</p>
           <p className={`text-marine-blue font-light ${isMonthly ? 'hidden' : ''}`}>2 months free</p>
         </div>
       </div>
