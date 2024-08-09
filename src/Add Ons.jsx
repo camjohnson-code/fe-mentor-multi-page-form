@@ -1,33 +1,41 @@
 import React, { useState } from 'react';
 import AddOnCard from './Add On Card';
 
-const AddOns = ({ decreaseStep, increaseStep, isMonthly, selectedAddOn, setSelectedAddOn }) => {
+const AddOns = ({
+  decreaseStep,
+  increaseStep,
+  isMonthly,
+  selectedAddOn,
+  setSelectedAddOn,
+}) => {
   const description = {
     0: {
-        name: 'Online service',
-        description: 'Access to multiplayer games',
-        monthlyPrice: 1,
-        yearlyPrice: 10
+      name: 'Online service',
+      description: 'Access to multiplayer games',
+      monthlyPrice: 1,
+      yearlyPrice: 10,
     },
     1: {
-        name: 'Larger storage',
-        description: 'Extra 1TB of cloud save',
-        monthlyPrice: 2,
-        yearlyPrice: 20
+      name: 'Larger storage',
+      description: 'Extra 1TB of cloud save',
+      monthlyPrice: 2,
+      yearlyPrice: 20,
     },
     2: {
-        name: 'Customizable Profile',
-        description: 'Custom theme on your profile',
-        monthlyPrice: 2,
-        yearlyPrice: 20
-    }
-  }
+      name: 'Customizable Profile',
+      description: 'Custom theme on your profile',
+      monthlyPrice: 2,
+      yearlyPrice: 20,
+    },
+  };
 
   const handleClick = (index) => {
-    const hasIndex = selectedAddOn.some((num) => num === index);
+    const hasIndex = selectedAddOn.some(
+      (addOn) => addOn.name === description[index].name
+    );
 
-    if (hasIndex) setSelectedAddOn(selectedAddOn.filter((num) => num !== index));
-    else setSelectedAddOn([...selectedAddOn, index]);
+    if (hasIndex) setSelectedAddOn(selectedAddOn.filter((addOn) => addOn.name !== description[index].name));
+    else setSelectedAddOn([...selectedAddOn, description[index]]);
   };
 
   return (
@@ -41,11 +49,15 @@ const AddOns = ({ decreaseStep, increaseStep, isMonthly, selectedAddOn, setSelec
           <AddOnCard
             key={index}
             isMonthly={isMonthly}
-            isChecked={selectedAddOn.includes(index)}
+            isChecked={selectedAddOn.some(addOn => addOn.name === description[index].name)}
             onClick={() => handleClick(index)}
             addOn={description[index].name}
             description={description[index].description}
-            price={isMonthly ? description[index].monthlyPrice : description[index].yearlyPrice}
+            price={
+              isMonthly
+                ? description[index].monthlyPrice
+                : description[index].yearlyPrice
+            }
           />
         ))}
       </div>
